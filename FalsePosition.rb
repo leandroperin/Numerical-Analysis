@@ -40,4 +40,4 @@ else
 end
 
 puts "X = " + x.to_s
-puts "K = " + k.to_s + " iterações"
+puts "K = " + k.to_s + " iterations"
