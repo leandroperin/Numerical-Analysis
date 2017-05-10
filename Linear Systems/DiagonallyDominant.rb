@@ -10,10 +10,10 @@ def isDiagonallyDominant(matrix)
 				sum += matrix[i,j]
 			end
 		end
-		if sum > A[i,i].abs
+		if sum > matrix[i,i].abs
 			return false
 		end
-		if sum < A[i,i].abs
+		if sum < matrix[i,i].abs
 			isDominant = true
 		end
 	end
