@@ -12,6 +12,8 @@ accuracy = 10**-5
 n = b.size()
 counter = 0
 
+relaxation = 0.88
+
 if isDiagonallyDominant(A)
 	while diff > accuracy
 		x_aux = x.map do |e| e end
@@ -22,7 +24,7 @@ if isDiagonallyDominant(A)
 					sum += A[i,j] * xi[j]
 				end
 			end
-			x[i] = (b[i] - sum) / A[i,i]
+			x[i] = relaxation*(b[i] - sum)/A[i,i] + xi[i]*(1-relaxation).abs
 			xi[i] = x[i]
 		end
 		diff = x.zip(x_aux).map { |x, y| (y - x).abs }.max
