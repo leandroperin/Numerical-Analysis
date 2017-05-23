@@ -1,43 +1,33 @@
-def function(x)
-  return x**3 - 9*x + 3
+def f(x)
+	return (Math::E**x) * (Math.sin(x)) - 1
 end
 
-a = 0.to_f
-b = 1.to_f
-k = 0
 accuracy = 10**-6
+a = 0.0
+b = 0.5
+k = 0
+x = 0.0
 
-if b-a < accuracy
-  x = (a+b) / 2
-elsif function(a).abs < accuracy
-  x = a
-elsif function(b).abs < accuracy
-  x = b
-else
-  k = 1
-  M = function(a)
+while f(a) * f(b) > 0
+	a = b
+	b += 0.5
+end
 
-  while 1
-    x = (a*function(b) - b*function(a)) / (function(b) - function(a))
-
-    if function(x).abs < accuracy
-      break
-    else
-      if M*function(x) > 0
-        a = x
-      else
-        b = x
-      end
-
-      if b-a < accuracy
-        x = (a+b) / 2
-        break
-      end
-    end
-
-    k += 1
-  end
+while f(x).abs > accuracy
+	x = a - (f(a) * (b - a)) / (f(b) - f(a))
+	
+	if f(x) == 0
+		break
+	end
+	
+	if f(a) * f(x) < 0
+		b = x
+	else
+		a = x
+	end
+	
+	k += 1
 end
 
 puts "X = " + x.to_s
-puts "K = " + k.to_s + " iterations"
+puts "K = " + k.to_s
